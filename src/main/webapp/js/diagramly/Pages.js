@@ -2645,37 +2645,15 @@ EditorUi.prototype.updateTabContainer = function()
 			}
 		}
 
-		var ghLink = document.createElement('a');
-		ghLink.href = 'https://github.com/jgraph/drawio';
-		ghLink.target = '_blank';
-		ghLink.style.cssText = 'margin-left:auto;display:flex;align-items:center;' +
-			'padding:0 8px;opacity:0.5;flex-shrink:0';
-		var ghImg = document.createElement('img');
-		ghImg.src = IMAGE_PATH + (Editor.isDarkMode() ?
-			'/github-logo-white.svg' : '/github-logo.svg');
-		ghImg.style.cssText = 'width:18px;height:18px';
-		ghImg.setAttribute('title', 'jgraph/drawio');
-		ghLink.appendChild(ghImg);
-
-		mxEvent.addListener(ghLink, 'mouseenter', function()
-		{
-			ghLink.style.opacity = '1';
-		});
-
-		mxEvent.addListener(ghLink, 'mouseleave', function()
-		{
-			ghLink.style.opacity = '0.5';
-		});
-
-		this.tabContainer.appendChild(ghLink);
+		// VWP: upstream appends a jgraph/drawio GitHub link to the end of
+		// the page tab bar here. Removed for the embedded editor.
 
 		if (activeTab != null)
 		{
 			activeTab.classList.add('geActivePage');
 		}
 
-		// Restore scroll position after all DOM mutations (ghLink append,
-		// active class) so the wrapper has its final clientWidth/scrollWidth.
+		// Restore scroll position after all DOM mutations (active class) so the wrapper has its final clientWidth/scrollWidth.
 		// Otherwise sl gets clamped to a temporarily smaller maxScrollLeft
 		// when the previous active page was at the right end.
 		this.tabScroller.scrollLeft = sl;
